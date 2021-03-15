@@ -22,7 +22,7 @@ namespace AgendaTelefonica.Repository
 
         public IEnumerable<ContatoEntity> GetAll()
         {
-            return _context.Contato.ToList();
+            return _context.Contato.OrderBy(p => p.Nome).ToList();
         }
 
         public void Insert(ContatoEntity obj)

@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AgendaTelefonica.Controllers;
 using System.Windows.Forms;
 
 namespace AgendaTelefonica
 {
     public partial class frmAgenda : Form
     {
+        private ContatoController _contatoController = new ContatoController();
+
         public frmAgenda()
         {
             InitializeComponent();
+            dataGridView1.DataSource = _contatoController.GetAll();
         }
     }
 }

@@ -43,11 +43,6 @@ namespace AgendaTelefonica.Repository
             return _context.Telefone.Where(p => p.Id == id).AsNoTracking().FirstOrDefault();
         }
 
-        public int? SelectByNumero(string numero)
-        {
-            return _context.Telefone.Where(p => p.Numero == numero).AsNoTracking().FirstOrDefault()?.IdContato;
-        }
-
         public void Update(TelefoneEntity obj)
         {
             var telefone = _context.Telefone.First(i => i.Id == obj.Id);

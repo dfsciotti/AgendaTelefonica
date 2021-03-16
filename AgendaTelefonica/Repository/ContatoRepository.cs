@@ -38,12 +38,13 @@ namespace AgendaTelefonica.Repository
             return _context.Contato.Where(p => p.Id == id).AsNoTracking().FirstOrDefault();
         }
 
-        public ContatoEntity SelectByTelefone(string telefone)
+        public IEnumerable<ContatoEntity> SelectByNumero(string numero)
         {
-            return (from a in _context.Contato
-                    join b in _context.Telefone on a.Id equals b.IdContato
-                    where b.Numero == telefone
-                    select a).FirstOrDefault();
+            return (from a in _context.Contato join
+                         b in _context.Telefone on a.Id equals b.IdContato
+                    where b.Numero == numero
+                    select a                    
+                    ).AsNoTracking().ToList();        
         }
 
         public void Update(ContatoEntity obj)

@@ -21,9 +21,18 @@ namespace AgendaTelefonica.Views
 
         private void PreencheTabelas()
         {
-            tblTelefones.Rows.Clear();
-            var contatos = _contatoController.GetAll();
-            tblContatos.DataSource = new BindingList<ContatoEntity>(contatos.ToList());
+            try
+            {
+                tbNome.Text = string.Empty;
+                tbTelefone.Text = string.Empty;
+                tblTelefones.Rows.Clear();
+                var contatos = _contatoController.GetAll();
+                tblContatos.DataSource = new BindingList<ContatoEntity>(contatos.ToList());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnLimpar_Click(object sender, System.EventArgs e)
@@ -31,33 +40,51 @@ namespace AgendaTelefonica.Views
             tbNome.Text = string.Empty;
             tbTelefone.Text = string.Empty;
             tblTelefones.Rows.Clear();
+            tblContatos.Rows.Clear();
             PreencheTabelas();
         }
 
         private void btnBuscar_Click(object sender, System.EventArgs e)
         {
-            var contatos = _contatoController.GetAll();
-            if (!string.IsNullOrEmpty(tbNome.Text))
+            try
             {
-                contatos = contatos.Where(p => p.Nome.Contains(tbNome.Text));
-                tblContatos.DataSource = new BindingList<ContatoEntity>(contatos.OrderBy(p => p.Nome).ToList());
-            }
-            
-            if (!string.IsNullOrEmpty(tbTelefone.Text))
-            {
-                var idContato = _telefoneController.SelectByNumero(tbTelefone.Text);
-                if (idContato != null)
+                var contatos = _contatoController.GetAll();
+                if (!string.IsNullOrEmpty(tbNome.Text))
                 {
-                    contatos = contatos.Where(p => p.Id == idContato);
+                    contatos = contatos.Where(p => p.Nome.Contains(tbNome.Text));
                     tblContatos.DataSource = new BindingList<ContatoEntity>(contatos.OrderBy(p => p.Nome).ToList());
                 }
-            }           
+
+                if (!string.IsNullOrEmpty(tbTelefone.Text))
+                {
+                    var contatosPorTelefone = _contatoController.SelectByNumero(tbTelefone.Text);
+                    if (contatosPorTelefone != null)
+                    {
+                        var idsContatos = contatosPorTelefone.ToList().Select(p => p.Id);
+                        contatos = contatos.Where(p => idsContatos.Contains(p.Id));
+                        tblContatos.DataSource = new BindingList<ContatoEntity>(contatos.OrderBy(p => p.Nome).ToList());
+                    }
+                }
+                if (contatos.Count() <= 0)
+                {
+                    MessageBox.Show("A busca não retornou resultados.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void tblContatos_SelectionChanged(object sender, System.EventArgs e)
         {
             try
             {
+                if (tblContatos.Rows.Count <= 0)
+                {
+                    return;
+                }
+
                 if (tblContatos.CurrentRow.Cells["ID"].Value == null)
                 {
                     MessageBox.Show("Selecione um contato antes de continuar.");
@@ -83,25 +110,42 @@ namespace AgendaTelefonica.Views
 
         private void btnEditar_Click(object sender, System.EventArgs e)
         {
-            if (tblContatos.CurrentRow.Cells["ID"].Value == null)
+            if (tblContatos.Rows.Count <= 0)
             {
-                MessageBox.Show("Selecione um contato para editar.");
                 return;
             }
 
-            var idContato = int.Parse(tblContatos.CurrentRow.Cells["ID"].Value.ToString());
-            frmIncluirContato frmIncluirContato = new frmIncluirContato(idContato);
-            frmIncluirContato.StartPosition = FormStartPosition.CenterParent;
-            frmIncluirContato.ShowDialog();
-            PreencheTabelas();
+            try
+            {
+                if (tblContatos.CurrentRow.Cells["ID"].Value == null)
+                {
+                    MessageBox.Show("Selecione um contato para editar.");
+                    return;
+                }
+
+                var idContato = int.Parse(tblContatos.CurrentRow.Cells["ID"].Value.ToString());
+                frmIncluirContato frmIncluirContato = new frmIncluirContato(idContato);
+                frmIncluirContato.StartPosition = FormStartPosition.CenterParent;
+                frmIncluirContato.ShowDialog();
+                PreencheTabelas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnExcluir_Click(object sender, System.EventArgs e)
         {
+            if (tblContatos.Rows.Count <= 0)
+            {
+                return;
+            }
+
             if (DialogResult.Yes == MessageBox.Show("Deseja excluir o contato?", "Sim/Não", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
                 try
-                {
+                { 
                     if (tblContatos.CurrentRow.Cells["ID"].Value == null)
                     {
                         MessageBox.Show("Selecione um contato para editar.");
@@ -120,6 +164,63 @@ namespace AgendaTelefonica.Views
                 {
                     MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void btnDelTelefone_Click(object sender, EventArgs e)
+        {
+            if (tblTelefones.Rows.Count <= 0)
+            {
+                return;
+            }
+
+            if (DialogResult.Yes == MessageBox.Show("Deseja excluir o telefone?", "Sim/Não", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            {
+                try
+                {                    
+                    if (tblTelefones.CurrentRow.Cells["IDTELEFONE"].Value == null)
+                    {
+                        MessageBox.Show("Selecione um telefone para excluir.");
+                        return;
+                    }
+                    var idTelefone = int.Parse(tblTelefones.CurrentRow.Cells["IDTELEFONE"].Value.ToString());
+                    var telefone = _telefoneController.Select(idTelefone);
+                    if (telefone != null)
+                    {
+                        _telefoneController.Delete(telefone);
+                        PreencheTabelas();
+                        MessageBox.Show("Telefone excluído com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnAddTelefone_Click(object sender, EventArgs e)
+        {
+            if (tblContatos.Rows.Count <= 0)
+            {
+                return;
+            }
+            try
+            {
+                if (tblContatos.CurrentRow.Cells["ID"].Value == null)
+                {
+                    MessageBox.Show("Selecione um contato para inserir o telefone.");
+                    return;
+                }
+                var idContato = int.Parse(tblContatos.CurrentRow.Cells["ID"].Value.ToString());
+                frmIncluirTelefone frmIncluirTelefone = new frmIncluirTelefone(idContato);
+                frmIncluirTelefone.StartPosition = FormStartPosition.CenterParent;
+                frmIncluirTelefone.ShowDialog();
+                PreencheTabelas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

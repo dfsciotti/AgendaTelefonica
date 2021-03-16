@@ -78,12 +78,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\PhoneTextBox.cs">
+    <Compile Include="Components\NumericTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\PhoneTextBox.designer.cs">
-      <DependentUpon>PhoneTextBox.cs</DependentUpon>
+    <Compile Include="Components\NumericTextBox.designer.cs">
+      <DependentUpon>NumericTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\LogFile.cs" />
     <Compile Include="Controllers\TelefoneController.cs" />
     <Compile Include="Controllers\ContatoController.cs" />
     <Compile Include="Controllers\IBaseController.cs" />
@@ -101,6 +102,12 @@
     <Compile Include="Repository\ContatoRepository.cs" />
     <Compile Include="Repository\IBaseRepository.cs" />
     <Compile Include="Repository\TelefoneRepository.cs" />
+    <Compile Include="Views\frmIncluirTelefone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmIncluirTelefone.Designer.cs">
+      <DependentUpon>frmIncluirTelefone.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmIncluirContato.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +127,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\frmIncluirTelefone.resx">
+      <DependentUpon>frmIncluirTelefone.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\frmIncluirContato.resx">
       <DependentUpon>frmIncluirContato.cs</DependentUpon>
     </EmbeddedResource>

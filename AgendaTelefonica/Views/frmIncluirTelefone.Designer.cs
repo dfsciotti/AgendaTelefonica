@@ -1,9 +1,7 @@
 ﻿
-using AgendaTelefonica.Components;
-
 namespace AgendaTelefonica.Views
 {
-    partial class frmIncluirContato
+    partial class frmIncluirTelefone
     {
         /// <summary>
         /// Required designer variable.
@@ -32,56 +30,14 @@ namespace AgendaTelefonica.Views
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.tbNome = new MetroFramework.Controls.MetroTextBox();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.btnLimpar = new System.Windows.Forms.ToolStripButton();
             this.btnSalvar = new System.Windows.Forms.ToolStripButton();
+            this.tbTelefone = new AgendaTelefonica.Components.NumericTextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.tbIdade = new AgendaTelefonica.Components.NumericTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // metroLabel1
-            // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(27, 138);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(46, 19);
-            this.metroLabel1.TabIndex = 19;
-            this.metroLabel1.Text = "Nome";
-            // 
-            // tbNome
-            // 
-            this.tbNome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            // 
-            // 
-            // 
-            this.tbNome.CustomButton.Image = null;
-            this.tbNome.CustomButton.Location = new System.Drawing.Point(353, 1);
-            this.tbNome.CustomButton.Name = "";
-            this.tbNome.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.tbNome.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbNome.CustomButton.TabIndex = 1;
-            this.tbNome.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbNome.CustomButton.UseSelectable = true;
-            this.tbNome.CustomButton.Visible = false;
-            this.tbNome.Lines = new string[0];
-            this.tbNome.Location = new System.Drawing.Point(98, 138);
-            this.tbNome.MaxLength = 100;
-            this.tbNome.Name = "tbNome";
-            this.tbNome.PasswordChar = '\0';
-            this.tbNome.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbNome.SelectedText = "";
-            this.tbNome.SelectionLength = 0;
-            this.tbNome.SelectionStart = 0;
-            this.tbNome.ShortcutsEnabled = true;
-            this.tbNome.Size = new System.Drawing.Size(375, 23);
-            this.tbNome.TabIndex = 18;
-            this.tbNome.UseSelectable = true;
-            this.tbNome.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbNome.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // bindingNavigator1
             // 
@@ -104,7 +60,7 @@ namespace AgendaTelefonica.Views
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = null;
             this.bindingNavigator1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.bindingNavigator1.Size = new System.Drawing.Size(474, 59);
+            this.bindingNavigator1.Size = new System.Drawing.Size(235, 59);
             this.bindingNavigator1.TabIndex = 20;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -136,49 +92,37 @@ namespace AgendaTelefonica.Views
             this.btnSalvar.ToolTipText = "F5 - Salvar / Incluir";
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
+            // tbTelefone
+            // 
+            this.tbTelefone.Location = new System.Drawing.Point(96, 144);
+            this.tbTelefone.MaxLength = 16;
+            this.tbTelefone.Name = "tbTelefone";
+            this.tbTelefone.Size = new System.Drawing.Size(147, 23);
+            this.tbTelefone.TabIndex = 23;
+            // 
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(27, 167);
+            this.metroLabel2.Location = new System.Drawing.Point(25, 144);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(42, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(57, 19);
             this.metroLabel2.TabIndex = 22;
-            this.metroLabel2.Text = "Idade";
+            this.metroLabel2.Text = "Telefone";
             // 
-            // tbIdade
-            // 
-            // 
-            // 
-            // 
-            this.tbIdade.Lines = new string[0];
-            this.tbIdade.Location = new System.Drawing.Point(98, 167);
-            this.tbIdade.MaxLength = 3;
-            this.tbIdade.Name = "tbIdade";
-            this.tbIdade.PasswordChar = '\0';
-            this.tbIdade.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbIdade.SelectedText = "";
-            this.tbIdade.SelectionLength = 0;
-            this.tbIdade.SelectionStart = 0;
-            this.tbIdade.ShortcutsEnabled = true;
-            this.tbIdade.Size = new System.Drawing.Size(51, 25);
-            this.tbIdade.TabIndex = 23;
-            // 
-            // frmIncluirContato
+            // frmIncluirTelefone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(514, 225);
-            this.Controls.Add(this.tbIdade);
+            this.ClientSize = new System.Drawing.Size(275, 190);
+            this.Controls.Add(this.tbTelefone);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.bindingNavigator1);
-            this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.tbNome);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmIncluirContato";
+            this.Name = "frmIncluirTelefone";
             this.Resizable = false;
-            this.Text = "NOVO CONTATO";
+            this.Text = "NOVO TELEFONE";
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
@@ -188,13 +132,10 @@ namespace AgendaTelefonica.Views
         }
 
         #endregion
-
-        private MetroFramework.Controls.MetroLabel metroLabel1;
-        private MetroFramework.Controls.MetroTextBox tbNome;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.ToolStripButton btnLimpar;
         private System.Windows.Forms.ToolStripButton btnSalvar;
+        private Components.NumericTextBox tbTelefone;
         private MetroFramework.Controls.MetroLabel metroLabel2;
-        private NumericTextBox tbIdade;
     }
 }

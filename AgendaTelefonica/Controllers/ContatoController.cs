@@ -7,15 +7,18 @@ namespace AgendaTelefonica.Controllers
     public class ContatoController : IBaseController<ContatoEntity>
     {
         private readonly ContatoRepository _contatoRepository;
+        private readonly LogFile _logFile;
 
         public ContatoController()
         {
             _contatoRepository = new ContatoRepository();
+            _logFile = new LogFile();
         }
 
         public void Delete(ContatoEntity obj)
         {
             _contatoRepository.Delete(obj);
+            _logFile.AddLine("Contato Excluído: " + obj.Id + " - " + obj.Nome);
         }
 
         public IEnumerable<ContatoEntity> GetAll()
@@ -33,9 +36,9 @@ namespace AgendaTelefonica.Controllers
             return _contatoRepository.Select(id);
         }
 
-        public ContatoEntity SelectByTelefone(string telefone)
+        public IEnumerable<ContatoEntity> SelectByNumero(string numero)
         {
-            return _contatoRepository.SelectByTelefone(telefone);
+            return _contatoRepository.SelectByNumero(numero);
         }
 
         public void Update(ContatoEntity obj)

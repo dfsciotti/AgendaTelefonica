@@ -1,6 +1,6 @@
 ﻿namespace AgendaTelefonica.Components
 {
-    partial class PhoneTextBox
+    partial class NumericTextBox
     {
         /// <summary>
         /// Variável de designer necessária.

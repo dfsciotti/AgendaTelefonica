@@ -38,11 +38,6 @@ namespace AgendaTelefonica.Controllers
             return _telefoneRepository.Select(id);
         }
 
-        public int? SelectByNumero(string numero)
-        {
-            return _telefoneRepository.SelectByNumero(numero);
-        }
-
         public void Update(TelefoneEntity obj)
         {
             _telefoneRepository.Update(obj);

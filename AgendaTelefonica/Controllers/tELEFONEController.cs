@@ -23,6 +23,11 @@ namespace AgendaTelefonica.Controllers
             return _telefoneRepository.GetAll();
         }
 
+        public IEnumerable<TelefoneEntity> GetAllByContato(int id)
+        {
+            return _telefoneRepository.GetAllByContato(id);
+        }
+
         public void Insert(TelefoneEntity obj)
         {
             _telefoneRepository.Insert(obj);
@@ -31,6 +36,11 @@ namespace AgendaTelefonica.Controllers
         public TelefoneEntity Select(int id)
         {
             return _telefoneRepository.Select(id);
+        }
+
+        public int? SelectByNumero(string numero)
+        {
+            return _telefoneRepository.SelectByNumero(numero);
         }
 
         public void Update(TelefoneEntity obj)

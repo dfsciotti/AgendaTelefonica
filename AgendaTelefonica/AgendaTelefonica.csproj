@@ -101,6 +101,12 @@
     <Compile Include="Repository\ContatoRepository.cs" />
     <Compile Include="Repository\IBaseRepository.cs" />
     <Compile Include="Repository\TelefoneRepository.cs" />
+    <Compile Include="Views\frmIncluirContato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmIncluirContato.Designer.cs">
+      <DependentUpon>frmIncluirContato.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Views\frmAgenda.resx">
       <DependentUpon>frmAgenda.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +120,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\frmIncluirContato.resx">
+      <DependentUpon>frmIncluirContato.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -128,7 +137,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\icons8-usuário-16.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\vassoura32.png" />
   </ItemGroup>
@@ -149,6 +160,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-apagar-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-ok-162.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

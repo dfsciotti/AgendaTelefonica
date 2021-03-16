@@ -9,6 +9,6 @@ namespace AgendaTelefonica.Entities
         [Key()]
         public int Id { get; set; }
         public int IdContato { get; set; }
-        public string Telefone { get; set; }
+        public string Numero { get; set; }
     }
 }

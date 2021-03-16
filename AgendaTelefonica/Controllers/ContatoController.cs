@@ -33,6 +33,11 @@ namespace AgendaTelefonica.Controllers
             return _contatoRepository.Select(id);
         }
 
+        public ContatoEntity SelectByTelefone(string telefone)
+        {
+            return _contatoRepository.SelectByTelefone(telefone);
+        }
+
         public void Update(ContatoEntity obj)
         {
             _contatoRepository.Update(obj);

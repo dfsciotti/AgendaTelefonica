@@ -113,9 +113,29 @@ namespace AgendaTelefonica.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_ok_162 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-ok-162", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_pesquisar_16 {
             get {
                 object obj = ResourceManager.GetObject("icons8-pesquisar-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_usuário_16 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-usuário-16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

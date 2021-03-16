@@ -9,6 +9,8 @@ namespace AgendaTelefonica.Database
     {
         public Context() : base("connectionString")
         {
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<ContatoEntity> Contato { get; set; }
